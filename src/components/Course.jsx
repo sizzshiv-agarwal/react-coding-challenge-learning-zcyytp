@@ -11,17 +11,11 @@ const Course = () => {
     renderLessons: false
   };
 
-  const lessons = getCoursesData();
-  console.log(lessons);
-  function handleViewLessons() {
-    data.renderLessons = true;
-  }
   return (
     <div class="course">
       <h3>{data.title}</h3>
       <p>{data.description}</p>
-      <button onClick={handleViewLessons()}>View Lessons</button>
-      {data.renderLessons && <ViewLessons />}
+      <button>View Lessons</button>
     </div>
   );
 };
