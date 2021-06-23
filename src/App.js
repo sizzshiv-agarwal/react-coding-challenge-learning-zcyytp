@@ -12,21 +12,23 @@ import { connect } from 'react-redux';
  */
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      data: []
-    };
-  }
   componentDidMount() {
     this.props.dispatch(getCoursesData());
-    //  console.log(this);
   }
   render() {
     // this.getData = getCoursesData();
+    const allCourses = this.props.state.courses;
+    console.log('allCourses', allCourses);
+    allCourses.map(all => {
+      console.log('here', all.title);
+    });
     return (
       <div>
         <h1>Courses</h1>
+        {allCourses.map((eachCourse, keys) => {
+          console.log('inside map', eachCourse.title);
+          <Course coursesObj={eachCourse} key={`courses -${keys}`} />;
+        })}
         <Course />
       </div>
     );
