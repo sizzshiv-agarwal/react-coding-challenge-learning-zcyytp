@@ -13,7 +13,7 @@ class ViewLessons extends React.Component {
               {' '}
               Lesson - {eachLesson.id} {eachLesson.title}
             </p>
-            <a href={eachLesson.videoUrl}>{eachLesson.videoUrl} </a>
+            <a href={eachLesson.videoUrl} target="_blank">{eachLesson.videoUrl} </a>
           </div>
         ))}
       </div>
