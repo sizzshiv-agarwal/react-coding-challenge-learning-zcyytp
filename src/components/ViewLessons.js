@@ -1,20 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const ViewLessons = () => {
-  const data = {
-    id: '1',
-    title: 'ReactJS',
-    description:
-      'One of the simplest frameworks to learn – React – was developed at Facebook to fix code maintainability issues due to the constant addition of features in the app.'
+class ViewLessons extends React.Component {
+  render() {
+    const { lessons } = this.props;
+    console.log(lessons);
+    return (
+      <div class="course">
+        {lessons.map(eachLesson => (
+          <div>
+            <p>
+              {' '}
+              Lesson - {eachLesson.id} {eachLesson.title}
+            </p>
+            <a href={eachLesson.videoUrl}>{eachLesson.videoUrl} </a>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    courses: state.courses,
+    renderLessons: state.renderLessons,
+    lessons: state.lessons
   };
-
-  return (
-    <div class="course">
-      <h3>{data.title}</h3>
-      <p>{data.description}</p>
-      <button>View Lessons</button>
-    </div>
-  );
-};
-
-export default ViewLessons;
+}
+export default connect(mapStateToProps)(ViewLessons);
