@@ -1,4 +1,4 @@
-import { GET_ALL_COURSES } from './actionTypes';
+import { GET_ALL_COURSES, GET_ALL_LESSONS } from './actionTypes';
 
 export function getCoursesData() {
   return dispatch => {
@@ -10,30 +10,37 @@ export function getCoursesData() {
       })
       .then(data => {
         console.log('in getcoursesdata', data);
-        dispatch(getPosts(data));
+        dispatch(getCourses(data));
       });
   };
 }
 
 export function getLessons() {
-  const url = 'https://6091056250c2550017677756.mockapi.io/learning/lessons';
-  console.log(url);
-
-  return function(dispatch) {
+  return dispatch => {
+    const url = 'https://6091056250c2550017677756.mockapi.io/learning/lessons';
+    console.log(url);
     fetch(url)
       .then(response => {
-        response.json();
+        return response.json();
       })
-      .then(courses => {
-        console.log(courses);
+      .then(data => {
+        console.log('in getLessons', data);
+        dispatch(getLessonsData(data));
       });
   };
 }
 
-export function getPosts(data) {
+export function getCourses(data) {
   console.log('insideGetPosts', data);
   return {
     type: GET_ALL_COURSES,
     data: data
+  };
+}
+
+export function getLessonsData(data) {
+  return {
+    type: GET_ALL_LESSONS,
+    data
   };
 }

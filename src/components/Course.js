@@ -9,21 +9,25 @@ class Course extends React.Component {
   };
 
   render() {
-    console.log('inside CourseComponent');
-    const data = this.props.courseProps;
-    console.log('inside course', data);
+    console.log('inside CourseComponent', this.props);
+    const { courseProps, renderLessons, lessons } = this.props;
+
+    console.log('inside course', courseProps);
     return (
       <div class="course">
-        <h3>{data.title}</h3>
-        <p>{data.description}</p>
+        <h3>{courseProps.title}</h3>
+        <p>{courseProps.description}</p>
         <button onClick={this.handleGetLessons}>View Lessons</button>
+        {renderLessons && <ViewLessons lessonsList={lessons} />}
       </div>
     );
   }
 }
 function mapStateToProps(state) {
   return {
-    courses: state.courses
+    courses: state.courses,
+    renderLessons: state.renderLessons,
+    lessons: state.lessons
   };
 }
 export default connect(mapStateToProps)(Course);

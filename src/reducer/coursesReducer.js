@@ -1,4 +1,4 @@
-import { GET_ALL_COURSES } from '../action/actionTypes';
+import { GET_ALL_COURSES, GET_ALL_LESSONS } from '../action/actionTypes';
 
 const initialState = {
   courses: [
@@ -9,7 +9,9 @@ const initialState = {
         'One of the simplest frameworks to learn – React – was developed at Facebook to fix code maintainability issues due to the constant addition of features in the app.',
       renderLessons: false
     }
-  ]
+  ],
+  lessons: [],
+  renderLessons: false
 };
 
 export default function coursesReducer(state = initialState, action) {
@@ -22,7 +24,14 @@ export default function coursesReducer(state = initialState, action) {
         courses: action.data
       };
     }
-
+    case GET_ALL_LESSONS: {
+      console.log('GET_ALL_LESSONS in reducer', action.data);
+      return {
+        ...state,
+        lessons: action.data,
+        renderLessons: true
+      };
+    }
     default:
       return state;
   }
