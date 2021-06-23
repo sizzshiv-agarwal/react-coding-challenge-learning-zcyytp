@@ -13,13 +13,15 @@ const initialState = {
 };
 
 export default function coursesReducer(state = initialState, action) {
+  console.log('inside reducer', action.type);
   switch (action.type) {
-    case GET_ALL_COURSES:
-      console.log(courses, 'in reducer');
+    case GET_ALL_COURSES: {
+      console.log('GET_ALL_COURSES in reducer', action.data);
       return {
         ...state,
-        courses: data
+        courses: action.data
       };
+    }
 
     default:
       return state;

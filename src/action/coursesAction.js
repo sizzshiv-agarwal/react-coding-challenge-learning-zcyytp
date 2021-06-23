@@ -9,6 +9,7 @@ export function getCoursesData() {
         return response.json();
       })
       .then(data => {
+        console.log('in getcoursesdata', data);
         dispatch(getPosts(data));
       });
   };
@@ -30,7 +31,7 @@ export function getLessons() {
 }
 
 export function getPosts(data) {
-  console.log('insideGetPosts');
+  console.log('insideGetPosts', data);
   return {
     type: GET_ALL_COURSES,
     data: data

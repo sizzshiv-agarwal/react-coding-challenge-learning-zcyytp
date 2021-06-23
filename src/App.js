@@ -13,23 +13,22 @@ import { connect } from 'react-redux';
 
 class App extends React.Component {
   componentDidMount() {
+    console.log('inside Component did mount');
     this.props.dispatch(getCoursesData());
   }
   render() {
     // this.getData = getCoursesData();
+    console.log('inside app render', this.props);
     const allCourses = this.props.state.courses;
-    console.log('allCourses', allCourses);
     allCourses.map(all => {
       console.log('here', all.title);
     });
     return (
       <div>
         <h1>Courses</h1>
-        {allCourses.map((eachCourse, keys) => {
-          console.log('inside map', eachCourse.title);
-          <Course coursesObj={eachCourse} key={`courses -${keys}`} />;
-        })}
-        <Course />
+        {allCourses.map(eachOfCourse => (
+          <Course courseProps={eachOfCourse} />
+        ))}
       </div>
     );
   }
@@ -39,4 +38,5 @@ function mapStateToProps(state) {
     state: state
   };
 }
+
 export default connect(mapStateToProps)(App);
