@@ -17,9 +17,10 @@ class Course extends React.Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    courses: state.courses
-  };
-}
-export default connect(mapStateToProps)(Course);
+// function mapStateToProps(state) {
+//   return {
+//     courses: state.courses
+//   };
+// }
+// export default connect(mapStateToProps)(Course);
+export default Course;
